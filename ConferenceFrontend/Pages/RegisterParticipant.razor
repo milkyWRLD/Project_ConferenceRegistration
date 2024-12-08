@@ -1,0 +1,62 @@
+@page "/register"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using ConferenceFrontend.Models
+@using System.Net.Http.Json
+
+<h3>Регистрация участника</h3>
+
+<EditForm Model="participant" OnValidSubmit="HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
+    <div class="form-group">
+        <label for="FullName">ФИО</label>
+        <InputText id="FullName" class="form-control" @bind-Value="participant.FullName" />
+    </div>
+
+    <div class="form-group">
+        <label for="Workplace">Место работы</label>
+        <InputText id="Workplace" class="form-control" @bind-Value="participant.Workplace" />
+    </div>
+
+    <div class="form-group">
+        <label for="AcademicTitle">Ученая степень и звание</label>
+        <InputText id="AcademicTitle" class="form-control" @bind-Value="participant.AcademicTitle" />
+    </div>
+
+    <div class="form-group">
+        <label for="ContactInfo">Контактная информация</label>
+        <InputText id="ContactInfo" class="form-control" @bind-Value="participant.ContactInfo" />
+    </div>
+
+    <div class="form-group">
+        <label for="Role">Роль</label>
+        <InputSelect id="Role" class="form-control" @bind-Value="participant.Role">
+            <option value="Listener">Слушатель</option>
+            <option value="Speaker">Докладчик</option>
+        </InputSelect>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Зарегистрировать</button>
+</EditForm>
+
+@code {
+    private Participant participant = new Participant();
+
+    private async Task HandleValidSubmit()
+    {
+        var response = await Http.PostAsJsonAsync("https://localhost:5001/api/participants", participant);
+
+        if (response.IsSuccessStatusCode)
+        {
+            // Успешная регистрация, можно отобразить уведомление или перенаправить
+            NavigationManager.NavigateTo("/participants");
+        }
+        else
+        {
+            // Обработать ошибку
+            Console.WriteLine("Ошибка регистрации");
+        }
+    }
+}

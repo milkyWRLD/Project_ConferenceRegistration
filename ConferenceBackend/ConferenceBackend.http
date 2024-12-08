@@ -1,0 +1,6 @@
+@ConferenceBackend_HostAddress = http://localhost:5028
+
+GET {{ConferenceBackend_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

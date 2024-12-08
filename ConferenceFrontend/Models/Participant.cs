@@ -1,12 +1,24 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace ConferenceFrontend.Models
 {
     public class Participant
     {
         public int Id { get; set; }
-        public string FullName { get; set; }
-        public string Workplace { get; set; }
-        public string AcademicTitle { get; set; }
-        public string ContactInfo { get; set; }
-        public string Role { get; set; } // Например, "Слушатель" или "Докладчик"
+
+        [Required]
+        public string FullName { get; set; } = string.Empty;
+
+        [Required]
+        public string Workplace { get; set; } = string.Empty;
+
+        [Required]
+        public string AcademicTitle { get; set; } = string.Empty;
+
+        [Required]
+        public string ContactInfo { get; set; } = string.Empty;
+
+        [Required]
+        public string Role { get; set; } = string.Empty;
     }
 }

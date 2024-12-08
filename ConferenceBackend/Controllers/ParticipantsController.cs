@@ -36,6 +36,11 @@ public class ParticipantsController : ControllerBase
     [HttpPost]
     public async Task<ActionResult<Participant>> AddParticipant(Participant participant)
     {
+        if (participant == null)
+        {
+            return BadRequest("Invalid participant data");
+        }
+
         _context.Participants.Add(participant);
         await _context.SaveChangesAsync();
 

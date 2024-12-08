@@ -1,0 +1,47 @@
+@page "/participants/{id:int}"
+@inject HttpClient Http
+@inject NavigationManager NavigationManager
+@using ConferenceFrontend.Models
+@using System.Net.Http.Json
+
+<h3>Детали участника</h3>
+
+@if (participant is null)
+{
+    <p><em>Загрузка...</em></p>
+}
+else
+{
+    <div>
+        <p><strong>ФИО:</strong> @participant.FullName</p>
+        <p><strong>Место работы:</strong> @participant.Workplace</p>
+        <p><strong>Ученая степень:</strong> @participant.AcademicTitle</p>
+        <p><strong>Контактная информация:</strong> @participant.ContactInfo</p>
+        <p><strong>Роль:</strong> @participant.Role</p>
+    </div>
+    <button class="btn btn-secondary" @onclick="GoBack">Назад</button>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Participant? participant;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            participant = await Http.GetFromJsonAsync<Participant>($"https://localhost:5001/api/participants/{Id}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка загрузки участника: {ex.Message}");
+        }
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/participants");
+    }
+}

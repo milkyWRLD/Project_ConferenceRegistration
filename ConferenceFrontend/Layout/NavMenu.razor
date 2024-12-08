@@ -1,6 +1,6 @@
-﻿<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-3 navbar navbar-dark bg-primary">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">ConferenceFrontend</a>
+        <a class="navbar-brand" href="/">ConferenceFrontend</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -8,20 +8,24 @@
 </div>
 
 <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
-    <nav class="flex-column">
+    <nav class="nav flex-column">
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+            <NavLink class="nav-link d-flex align-items-center" href="/" Match="NavLinkMatch.All">
+                <span class="bi bi-house-door-fill me-2"></span>
+                Home
+            </NavLink>
+        </div>
+        <!-- Новые страницы -->
+        <div class="nav-item px-3">
+            <NavLink class="nav-link d-flex align-items-center" href="/participants">
+                <span class="bi bi-person-fill me-2"></span>
+                Список участников
             </NavLink>
         </div>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="counter">
-                <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-            </NavLink>
-        </div>
-        <div class="nav-item px-3">
-            <NavLink class="nav-link" href="weather">
-                <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
+            <NavLink class="nav-link d-flex align-items-center" href="/register-participant">
+                <span class="bi bi-person-plus-fill me-2"></span>
+                Регистрация участника
             </NavLink>
         </div>
     </nav>

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ConferenceBackend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6584a78a13db7ba120f571a942a962ae29c4198")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+2b4e7cbf6b3de214e4f9a9c516eaf57c15c2dfc4")]
 [assembly: System.Reflection.AssemblyProductAttribute("ConferenceBackend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ConferenceBackend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,7 +1,7 @@
 {
   "mainAssemblyName": "ConferenceFrontend",
   "resources": {
-    "hash": "sha256-zCqi8gs8bW7Q7q9E61AOWTK2xvTjoeOA/vDPyB0bEuM=",
+    "hash": "sha256-e5EL1uI39iSCylYzRZ+NRrGQv3yD4fBDH5XQfeCuSVY=",
     "jsModuleNative": {
       "dotnet.native.8.0.11.hrdwnxqp0x.js": "sha256-VdKq87/z5NIxZKmuM+fv38XF+RcEb/bg3jVBwQSfwP4="
     },
@@ -208,10 +208,10 @@
       "mscorlib.wasm": "sha256-04e4k5XU8HWGB/dq/2+j84xzzGPflTs0IYWI0OxogVc=",
       "netstandard.wasm": "sha256-gnGZURPnoSmjXuYNCOJi5tt8qn2LRImWgue1Ru3/TDQ=",
       "System.Private.CoreLib.wasm": "sha256-6w3jYr0arcp8jnt4aeqh+AmqrLA6q7jl9rQYAwLzE0M=",
-      "ConferenceFrontend.wasm": "sha256-XLxI73cxiIEv3P2ONaOuAwBZvNWqWndkbT/WuPD8phg="
+      "ConferenceFrontend.wasm": "sha256-NC5EGCKQv+rZ0Xzf5ic9l/rrmFHmn93pHQsBESAvUX8="
     },
     "pdb": {
-      "ConferenceFrontend.pdb": "sha256-IjeHL8w/I7bQZW+/yAVxkDqGrw1NIMVST1FF+YXODeg="
+      "ConferenceFrontend.pdb": "sha256-VCfOh6NbWmJ0Od1hRLQy8H6LT1uaKlEHudOvROrzeFA="
     }
   },
   "cacheBootResources": true,

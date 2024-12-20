@@ -6,19 +6,23 @@
 
 <h3>Список участников</h3>
 
-@if (participants is null)
+@if (participants == null)
 {
-    <p><em>Загрузка...</em></p>
+    <p>Загрузка...</p>
+}
+else if (!participants.Any())
+{
+    <p>Участники отсутствуют.</p>
 }
 else
 {
-    <table class="table table-bordered">
+    <table class="table">
         <thead>
             <tr>
                 <th>ФИО</th>
                 <th>Место работы</th>
                 <th>Ученая степень</th>
-                <th>Контактная информация</th>
+                <th>Контакты</th>
                 <th>Роль</th>
                 <th>Действия</th>
             </tr>
@@ -27,19 +31,14 @@ else
             @foreach (var participant in participants)
             {
                 <tr>
-                    <td>
-                        <NavLink class="nav-link" href="/participants">
-                            Участники
-                        </NavLink>
-                    </td>
+                    <td>@participant.FullName</td>
                     <td>@participant.Workplace</td>
                     <td>@participant.AcademicTitle</td>
                     <td>@participant.ContactInfo</td>
                     <td>@participant.Role</td>
                     <td>
-                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteParticipant(participant.Id)">
-                            Удалить
-                        </button>
+                        <button class="btn btn-warning btn-sm" @onclick="() => EditParticipant(participant.Id)">Редактировать</button>
+                        <button class="btn btn-danger btn-sm" @onclick="() => DeleteParticipant(participant.Id)">Удалить</button>
                     </td>
                 </tr>
             }
@@ -47,37 +46,29 @@ else
     </table>
 }
 
-<button class="btn btn-primary" @onclick="NavigateToRegistration">Добавить участника</button>
+<button class="btn btn-primary" @onclick="AddParticipant">Добавить участника</button>
 
 @code {
     private List<Participant>? participants;
 
     protected override async Task OnInitializedAsync()
     {
-        await LoadParticipants();
+        participants = await Http.GetFromJsonAsync<List<Participant>>("http://localhost:5028/api/participants");
     }
 
-    private async Task LoadParticipants()
+    private void AddParticipant()
     {
-        participants = await Http.GetFromJsonAsync<List<Participant>>("https://localhost:5001/api/participants");
+        NavigationManager.NavigateTo("/register");
+    }
+
+    private void EditParticipant(int id)
+    {
+        NavigationManager.NavigateTo($"/participants/edit/{id}");
     }
 
     private async Task DeleteParticipant(int id)
     {
-        var response = await Http.DeleteAsync($"https://localhost:5001/api/participants/{id}");
-
-        if (response.IsSuccessStatusCode)
-        {
-            participants?.RemoveAll(p => p.Id == id);
-        }
-        else
-        {
-            Console.WriteLine("Ошибка при удалении участника.");
-        }
-    }
-
-    private void NavigateToRegistration()
-    {
-        NavigationManager.NavigateTo("/register");
+        await Http.DeleteAsync($"http://localhost:5028/api/participants/{id}");
+        participants = participants?.Where(p => p.Id != id).ToList();
     }
 }
